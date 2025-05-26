@@ -1010,6 +1010,19 @@ require('lazy').setup({
   -- Or use telescope!
   -- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
   -- you can continue same window with `<space>sr` which resumes last telescope search
+  {
+    'MoaidHathot/dotnet.nvim',
+    cmd = 'DotnetUI',
+    opts = {
+
+      bootstrap = {
+        auto_bootstrap = true, -- Automatically call "bootstrap" when creating a new file, adding a namespace and a class to the files
+      },
+      project_selection = {
+        path_display = 'filename_first', -- Determines how file paths are displayed. All of Telescope's path_display options are supported
+      },
+    },
+  },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -1033,6 +1046,26 @@ require('lazy').setup({
 })
 
 require 'cristobal.keybinds'
+
+local lspconfig = require 'lspconfig'
+
+lspconfig.csharp_ls.setup {
+  cmd = { 'csharp-ls' }, -- si está en ~/.dotnet/tools
+  root_dir = function(bufnr, on_dir)
+    local fname = vim.api.nvim_buf_get_name(bufnr)
+    on_dir(lspconfig.util.root_pattern '*.sln'(fname) or lspconfig.util.root_pattern '*.csproj'(fname))
+  end,
+  filetypes = { 'cs' },
+  init_options = { AutomaticWorkspaceInit = true },
+}
+
+vim.lsp.enable 'csharp_ls'
+
+vim.filetype.add {
+  extension = {
+    xaml = 'xml',
+  },
+}
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
