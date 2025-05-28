@@ -1,6 +1,6 @@
 -- Neo-tree is a Neovim plugin to browse the file system
 -- https://github.com/nvim-neo-tree/neo-tree.nvim
-
+vim.api.nvim_set_keymap('n', '<leader>g', ':Neotree float git_status<CR>', { noremap = true, silent = true })
 return {
   'nvim-neo-tree/neo-tree.nvim',
   version = '*',

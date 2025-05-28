@@ -363,23 +363,6 @@ require('lazy').setup({
     event = 'VimEnter',
     dependencies = {
       'nvim-lua/plenary.nvim',
-      { -- If encountering errors, see telescope-fzf-native README for installation instructions
-        'nvim-telescope/telescope-fzf-native.nvim',
-
-        -- `build` is used to run some command when the plugin is installed/updated.
-        -- This is only run then, not every time Neovim starts up.
-        build = 'make',
-
-        -- `cond` is a condition used to determine whether this plugin should be
-        -- installed and loaded.
-        cond = function()
-          return vim.fn.executable 'make' == 1
-        end,
-      },
-      { 'nvim-telescope/telescope-ui-select.nvim' },
-
-      -- Useful for getting pretty icons, but requires a Nerd Font.
-      { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
     config = function()
       -- Telescope is a fuzzy finder that comes with a lot of different things that
@@ -673,7 +656,7 @@ require('lazy').setup({
       local servers = {
         -- clangd = {},
         -- gopls = {},
-        -- pyright = {},
+        pyright = {},
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -1010,6 +993,39 @@ require('lazy').setup({
   -- Or use telescope!
   -- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
   -- you can continue same window with `<space>sr` which resumes last telescope search
+  {
+    'MoaidHathot/dotnet.nvim',
+    cmd = 'DotnetUI',
+    opts = {
+
+      bootstrap = {
+        auto_bootstrap = true, -- Automatically call "bootstrap" when creating a new file, adding a namespace and a class to the files
+      },
+      project_selection = {
+        path_display = 'filename_first', -- Determines how file paths are displayed. All of Telescope's path_display options are supported
+      },
+    },
+  },
+<<<<<<< HEAD
+  { -- If encountering errors, see telescope-fzf-native README for installation instructions
+    'nvim-telescope/telescope-fzf-native.nvim',
+
+    -- `build` is used to run some command when the plugin is installed/updated.
+    -- This is only run then, not every time Neovim starts up.
+    build = 'make',
+
+    -- `cond` is a condition used to determine whether this plugin should be
+    -- installed and loaded.
+    cond = function()
+      return vim.fn.executable 'make' == 1
+    end,
+  },
+  { 'nvim-telescope/telescope-ui-select.nvim' },
+
+  -- Useful for getting pretty icons, but requires a Nerd Font.
+  { 'nvim-tree/nvim-web-devicons', enabled = true },
+=======
+>>>>>>> bea7077580d5b382cc68eaefbcfdfa86ef08bee8
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -1034,5 +1050,47 @@ require('lazy').setup({
 
 require 'cristobal.keybinds'
 
+local lspconfig = require 'lspconfig'
+
+lspconfig.csharp_ls.setup {
+  cmd = { 'csharp-ls' }, -- si está en ~/.dotnet/tools
+  root_dir = function(bufnr, on_dir)
+    local fname = vim.api.nvim_buf_get_name(bufnr)
+    on_dir(lspconfig.util.root_pattern '*.sln'(fname) or lspconfig.util.root_pattern '*.csproj'(fname))
+  end,
+  filetypes = { 'cs' },
+  init_options = { AutomaticWorkspaceInit = true },
+}
+
+vim.lsp.enable 'csharp_ls'
+
+vim.filetype.add {
+  extension = {
+    xaml = 'xml',
+  },
+}
+
+<<<<<<< HEAD
+vim.opt.foldcolumn = '0'
+vim.opt.foldmethod = 'expr'
+vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+vim.opt.foldtext = ''
+
+vim.opt.foldnestmax = 3
+vim.opt.foldlevel = 99
+vim.opt.foldlevelstart = 99
+
+local function close_all_folds()
+  vim.api.nvim_exec2('%foldc!', { output = false })
+end
+local function open_all_folds()
+  vim.api.nvim_exec2('%foldo!', { output = false })
+end
+
+vim.keymap.set('n', '<leader>zs', close_all_folds, { desc = '[s]hut all folds' })
+vim.keymap.set('n', '<leader>zo', open_all_folds, { desc = '[o]pen all folds' })
+
+=======
+>>>>>>> bea7077580d5b382cc68eaefbcfdfa86ef08bee8
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
