@@ -1006,7 +1006,6 @@ require('lazy').setup({
       },
     },
   },
-<<<<<<< HEAD
   { -- If encountering errors, see telescope-fzf-native README for installation instructions
     'nvim-telescope/telescope-fzf-native.nvim',
 
@@ -1024,8 +1023,6 @@ require('lazy').setup({
 
   -- Useful for getting pretty icons, but requires a Nerd Font.
   { 'nvim-tree/nvim-web-devicons', enabled = true },
-=======
->>>>>>> bea7077580d5b382cc68eaefbcfdfa86ef08bee8
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -1070,7 +1067,6 @@ vim.filetype.add {
   },
 }
 
-<<<<<<< HEAD
 vim.opt.foldcolumn = '0'
 vim.opt.foldmethod = 'expr'
 vim.opt.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
@@ -1090,7 +1086,5 @@ end
 vim.keymap.set('n', '<leader>zs', close_all_folds, { desc = '[s]hut all folds' })
 vim.keymap.set('n', '<leader>zo', open_all_folds, { desc = '[o]pen all folds' })
 
-=======
->>>>>>> bea7077580d5b382cc68eaefbcfdfa86ef08bee8
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
