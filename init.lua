@@ -102,7 +102,7 @@ vim.g.have_nerd_font = false
 vim.o.number = true
 -- You can also add relative line numbers, to help with jumping.
 --  Experiment for yourself to see if you like it!
--- vim.o.relativenumber = true
+vim.o.relativenumber = true
 
 -- Enable mouse mode, can be useful for resizing splits for example!
 vim.o.mouse = 'a'
@@ -1023,6 +1023,11 @@ require('lazy').setup({
 
   -- Useful for getting pretty icons, but requires a Nerd Font.
   { 'nvim-tree/nvim-web-devicons', enabled = true },
+  {
+    'ThePrimeagen/harpoon',
+    branch = 'harpoon2',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+  },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
@@ -1086,5 +1091,8 @@ end
 vim.keymap.set('n', '<leader>zs', close_all_folds, { desc = '[s]hut all folds' })
 vim.keymap.set('n', '<leader>zo', open_all_folds, { desc = '[o]pen all folds' })
 
+vim.opt.wrap = true
+vim.opt.linebreak = true
+vim.opt.list = false
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
