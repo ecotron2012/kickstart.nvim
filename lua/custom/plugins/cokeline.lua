@@ -40,14 +40,16 @@ return {
 
       components = {
         {
-          text = '｜',
-          fg = function(buffer)
-            return buffer.is_modified and yellow or green
+          text = function(buffer)
+            return (buffer.index ~= 1) and '▏' or ''
+          end,
+          fg = function()
+            return get_hex('Normal', 'fg')
           end,
         },
         {
           text = function(buffer)
-            return buffer.devicon.icon .. ' '
+            return '    ' .. buffer.devicon.icon
           end,
           fg = function(buffer)
             return buffer.devicon.color
@@ -55,26 +57,20 @@ return {
         },
         {
           text = function(buffer)
-            return buffer.index .. ': '
-          end,
-        },
-        {
-          text = function(buffer)
-            return buffer.unique_prefix
-          end,
-          fg = get_hex('Comment', 'fg'),
-          italic = true,
-        },
-        {
-          text = function(buffer)
-            return buffer.filename .. ' '
+            return buffer.filename .. '    '
           end,
           bold = function(buffer)
             return buffer.is_focused
           end,
         },
         {
-          text = ' ',
+          text = '󰖭',
+          on_click = function(_, _, _, _, buffer)
+            buffer:delete()
+          end,
+        },
+        {
+          text = '  ',
         },
       },
     }
