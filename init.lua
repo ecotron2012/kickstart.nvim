@@ -643,6 +643,7 @@ require('lazy').setup({
       --  When you add blink.cmp, luasnip, etc. Neovim now has *more* capabilities.
       --  So, we create new capabilities with blink.cmp, and then broadcast that to the servers.
       local capabilities = require('blink.cmp').get_lsp_capabilities()
+      local util = require 'lspconfig.util'
 
       -- Enable the following language servers
       --  Feel free to add/remove any LSPs that you want here. They will automatically be installed.
@@ -679,6 +680,18 @@ require('lazy').setup({
               -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
               -- diagnostics = { disable = { 'missing-fields' } },
             },
+          },
+        },
+
+        csharp_ls = {
+          cmd = { 'csharp-ls' },
+          root_dir = function(bufnr, on_dir)
+            local fname = vim.api.nvim_buf_get_name(bufnr)
+            on_dir(util.root_pattern '*.sln'(fname) or util.root_pattern '*.slnx'(fname) or util.root_pattern '*.csproj'(fname))
+          end,
+          filetypes = { 'cs' },
+          init_options = {
+            AutomaticWorkspaceInit = true,
           },
         },
       }
@@ -975,14 +988,6 @@ require('lazy').setup({
   require 'kickstart.plugins.neo-tree',
   require 'kickstart.plugins.gitsigns', -- adds gitsigns recommend keymaps
 
-  {
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    config = function()
-      require('lualine').setup { options = { theme = 'jellybeans' } }
-    end,
-  },
-
   -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
   --    This is the easiest way to modularize your config.
   --
@@ -993,19 +998,6 @@ require('lazy').setup({
   -- Or use telescope!
   -- In normal mode type `<space>sh` then write `lazy.nvim-plugin`
   -- you can continue same window with `<space>sr` which resumes last telescope search
-  {
-    'MoaidHathot/dotnet.nvim',
-    cmd = 'DotnetUI',
-    opts = {
-
-      bootstrap = {
-        auto_bootstrap = true, -- Automatically call "bootstrap" when creating a new file, adding a namespace and a class to the files
-      },
-      project_selection = {
-        path_display = 'filename_first', -- Determines how file paths are displayed. All of Telescope's path_display options are supported
-      },
-    },
-  },
   { -- If encountering errors, see telescope-fzf-native README for installation instructions
     'nvim-telescope/telescope-fzf-native.nvim',
 
@@ -1023,11 +1015,6 @@ require('lazy').setup({
 
   -- Useful for getting pretty icons, but requires a Nerd Font.
   { 'nvim-tree/nvim-web-devicons', enabled = true },
-  {
-    'ThePrimeagen/harpoon',
-    branch = 'harpoon2',
-    dependencies = { 'nvim-lua/plenary.nvim' },
-  },
   { 'echasnovski/mini.surround', version = '*' },
 }, {
   ui = {
@@ -1052,20 +1039,6 @@ require('lazy').setup({
 })
 
 require 'cristobal.keybinds'
-
-local lspconfig = require 'lspconfig'
-
-lspconfig.csharp_ls.setup {
-  cmd = { 'csharp-ls' }, -- si está en ~/.dotnet/tools
-  root_dir = function(bufnr, on_dir)
-    local fname = vim.api.nvim_buf_get_name(bufnr)
-    on_dir(lspconfig.util.root_pattern '*.sln'(fname) or lspconfig.util.root_pattern '*.csproj'(fname))
-  end,
-  filetypes = { 'cs' },
-  init_options = { AutomaticWorkspaceInit = true },
-}
-
-vim.lsp.enable 'csharp_ls'
 
 vim.filetype.add {
   extension = {
