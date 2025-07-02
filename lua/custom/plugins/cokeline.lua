@@ -10,6 +10,8 @@ return {
 
     local green = vim.g.terminal_color_2
     local yellow = vim.g.terminal_color_3
+    vim.keymap.set('n', 'gB', '<Plug>(cokeline-focus-prev)', { silent = true, desc = 'Go to previous buffer' })
+    vim.keymap.set('n', 'gb', '<Plug>(cokeline-focus-next)', { silent = true, desc = 'Go to next buffer' })
 
     -- Bufferline style
     require('cokeline').setup {
