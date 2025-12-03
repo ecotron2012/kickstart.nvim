@@ -1218,3 +1218,6 @@ vim.opt.list = false
 -- Test
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+vim.o.shell = "pwsh.exe"
+vim.o.shellcmdflag = "-NoLogo -ExecutionPolicy RemoteSigned -Command"
