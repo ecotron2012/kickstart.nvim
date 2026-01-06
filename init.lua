@@ -83,6 +83,9 @@ I hope you enjoy your Neovim journey,
 
 P.S. You can delete this when you're done too. It's your config now! :)
 --]]
+--
+-- Añade /usr/bin al principio del PATH de Neovim
+-- vim.env.PATH = '/usr/bin:' .. vim.env.PATH
 
 -- Set <space> as the leader key
 -- See `:help mapleader`
@@ -1219,5 +1222,5 @@ vim.opt.list = false
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
 
-vim.o.shell = "pwsh.exe"
-vim.o.shellcmdflag = "-NoLogo -ExecutionPolicy RemoteSigned -Command"
+vim.o.shell = '/bin/bash'
+vim.o.shellcmdflag = '-NoLogo -ExecutionPolicy RemoteSigned -Command'
