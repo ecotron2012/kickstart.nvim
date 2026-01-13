@@ -13,4 +13,3 @@ return {
     { '<localLeader>l', '', desc = '+vimtex' },
   },
 }
-
