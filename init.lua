@@ -1105,4 +1105,4 @@ vim.opt.list = false
 -- vim: ts=2 sts=2 sw=2 et
 
 vim.o.shell = '/bin/bash'
-vim.o.shellcmdflag = '-NoLogo -ExecutionPolicy RemoteSigned -Command'
+vim.o.shellcmdflag = '-c'
