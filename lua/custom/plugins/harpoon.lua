@@ -47,6 +47,12 @@ return {
       harpoon:list():select(4)
     end, { desc = 'Go to marker 4' })
 
+    vim.keymap.set('n', '<leader>pa', function()
+      vim.ui.input({prompt = 'Select the marker position (1-9): '}, function(input)
+        harpoon:list():select(tonumber(input))
+      end)
+    end, { desc = 'Go to specific marker' })
+
     -- Toggle previous & next buffers stored within Harpoon list
     vim.keymap.set('n', '<C-S-P>', function()
       harpoon:list():prev()
