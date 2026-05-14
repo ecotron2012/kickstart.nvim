@@ -973,8 +973,8 @@ do
   require 'custom.plugins'
 end
 
-vim.keymap.set('n', '<leader>zs', close_all_folds, { desc = '[s]hut all folds' })
-vim.keymap.set('n', '<leader>zo', open_all_folds, { desc = '[o]pen all folds' })
+-- vim.keymap.set('n', '<leader>zs', close_all_folds, { desc = '[s]hut all folds' })
+-- vim.keymap.set('n', '<leader>zo', open_all_folds, { desc = '[o]pen all folds' })
 
 vim.opt.wrap = true
 vim.opt.linebreak = true
