@@ -1,3 +1,1 @@
-return {
-  'ludovicchabant/vim-gutentags',
-}
+vim.pack.add {'https://github.com/ludovicchabant/vim-gutentags'}
