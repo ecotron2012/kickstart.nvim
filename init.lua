@@ -981,7 +981,11 @@ require 'cristobal.keybinds'
 vim.opt.wrap = true
 vim.opt.linebreak = true
 vim.opt.list = false
--- Test1
+
+if vim.fn.has("nvim") == 1 and vim.fn.executable("nvr") == 1 then
+  vim.env.VISUAL = "nvr -cc split --remote-wait +'set bufhidden=wipe'"
+end
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
 
