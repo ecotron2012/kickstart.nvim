@@ -162,6 +162,10 @@
       "rev": "aa47c5e29c37c52176c44e61c780032dfacef3dd",
       "src": "https://github.com/ludovicchabant/vim-gutentags"
     },
+    "vim-projectionist": {
+      "rev": "5ff7bf79a6ef741036d2038a226bcb5f8b1cd296",
+      "src": "https://github.com/tpope/vim-projectionist"
+    },
     "vim-test": {
       "rev": "7062b50979a28e804081f0e82b7321184ec1c20b",
       "src": "https://github.com/vim-test/vim-test"
