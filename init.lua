@@ -788,6 +788,8 @@ do
       local enabled_filetypes = {
         -- lua = true,
         -- python = true,
+        c = true,
+        cpp = true,
       }
       if enabled_filetypes[vim.bo[bufnr].filetype] then
         return { timeout_ms = 500 }
@@ -806,6 +808,8 @@ do
       --
       -- You can use 'stop_after_first' to run the first available formatter from the list
       -- javascript = { "prettierd", "prettier", stop_after_first = true },
+      c = { 'clang-format' },
+      cpp = { 'clang-format' },
     },
   }
 
