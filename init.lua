@@ -1031,13 +1031,12 @@ do
   require 'kickstart.plugins.indent_line'
   require 'kickstart.plugins.lint'
   -- require 'kickstart.plugins.autopairs'
-  -- require 'kickstart.plugins.neo-tree'
+  require 'kickstart.plugins.neo-tree'
 
   -- NOTE: You can add your own plugins, configuration, etc. in `lua/custom/plugins/*.lua`.
   --
-<<<<<<< HEAD
   -- For independent modules, uncomment the convenience loader:
-  -- require 'custom.plugins'
+  require 'custom.plugins'
   --
   -- `custom.plugins` automatically loads files from that directory, but their
   -- order is unspecified. If plugins depend on each other, keep them in the same
@@ -1048,9 +1047,12 @@ do
   -- require 'custom.plugins.ui'
   -- require 'custom.plugins.git'
 
+
+end
 -- vim.keymap.set('n', '<leader>zs', close_all_folds, { desc = '[s]hut all folds' })
 -- vim.keymap.set('n', '<leader>zo', open_all_folds, { desc = '[o]pen all folds' })
 require 'cristobal.keybinds'
+
 
 vim.opt.wrap = true
 vim.opt.linebreak = true
